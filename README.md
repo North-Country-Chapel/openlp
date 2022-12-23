@@ -1,2 +1,2 @@
 # openlp
-stage views for OpenLP
+Custom stage views for OpenLP
