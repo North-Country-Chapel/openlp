@@ -1,0 +1,79 @@
+/**
+ * ***************************************************************************
+ * OpenLP - Open Source Lyrics Projection                                      *
+ * --------------------------------------------------------------------------- *
+ * Copyright (c) 2008-2017 OpenLP Developers                                   *
+ * --------------------------------------------------------------------------- *
+ * This program is free software; you can redistribute it and/or modify it     *
+ * under the terms of the GNU General Public License as published by the Free  *
+ * Software Foundation; version 2 of the License.                              *
+ *                                                                             *
+ * This program is distributed in the hope that it will be useful, but WITHOUT *
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or       *
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for    *
+ * more details.                                                               *
+ *                                                                             *
+ * You should have received a copy of the GNU General Public License along     *
+ * with this program; if not, write to the Free Software Foundation, Inc., 59  *
+ * Temple Place, Suite 330, Boston, MA 02111-1307 USA                          *
+ * ****************************************************************************
+ *
+ * @format
+ */
+
+body {
+  background-color: black;
+  font-family: Ubuntu, sans-serif;
+  overflow: hidden;
+}
+
+#currentslide {
+  font-size: 40pt;
+  font-weight: 400;
+  color: whitesmoke;
+  padding-bottom: 0px;
+  /* addded in to move to bottom */
+  padding: 20px;
+  text-align: center;
+  position: fixed;
+  bottom: 10%;
+  left: 10%;
+  right: 10%;
+  /* -webkit-text-stroke: 0.6px;
+  -webkit-text-stroke-color: blue; */
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+#nextslide {
+  font-size: 40pt;
+  color: yellow;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+#right {
+  float: right;
+}
+
+#clock {
+  font-size: 30pt;
+  color: yellow;
+  text-align: right;
+}
+
+#notes {
+  font-size: 36pt;
+  color: salmon;
+  text-align: right;
+}
+
+#verseorder {
+  font-size: 30pt;
+  color: green;
+  text-align: left;
+}
+
+.currenttag {
+  color: lightgreen;
+  font-weight: bold;
+}
