@@ -37,7 +37,7 @@ window.OpenLP = {
         OpenLP.myTwelve = data.twelve;
         const state = JSON.parse(reader.result.toString()).results;
         //added ninja code here
-        if (state.blank) {
+        if (state.blank || state.theme || state.display) {
           // Run code to blank your stage view here
           $("body").hide();
         } else {
