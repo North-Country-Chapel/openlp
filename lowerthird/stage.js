@@ -36,6 +36,7 @@ window.OpenLP = {
         // set some global var
         OpenLP.myTwelve = data.twelve;
         const state = JSON.parse(reader.result.toString()).results;
+
         //added ninja code here
         if (state.blank || state.theme || state.display) {
           // Run code to blank your stage view here
@@ -44,6 +45,7 @@ window.OpenLP = {
           $("body").show();
         }
         // end ninja code
+
         if (
           OpenLP.currentItem != data.item ||
           OpenLP.currentService != data.service
@@ -152,19 +154,24 @@ window.OpenLP = {
     $("#tag" + OpenLP.currentTags[OpenLP.currentSlide]).addClass("currenttag");
     var slide = OpenLP.currentSlides[OpenLP.currentSlide];
     var text = "";
+
     // use title if available
     if (slide["text"]) {
       text = slide["text"];
     } else {
-      text = slide["Title"];
+      text = slide["title"];
     }
-    // use thumbnail if available
-    if (slide["img"]) {
+
+    if (
+      ["mp4", "png", "gif", "jpg", "jpeg", "wmv", "pptx", "pdf"].some((char) =>
+        text.endsWith(char)
+      )
+    ) {
       $("body").hide();
-      // "<br /><img src='" +
-      //   slide["img"].replace("//thumbnails//", "//thumbnails//") +
-      //   "'><br />";
     }
+
+    //use thumbnail if available
+
     // use notes if available
     if (slide["slide_notes"]) {
       text += "<br />" + slide["footer"];
