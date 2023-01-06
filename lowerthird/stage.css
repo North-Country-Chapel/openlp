@@ -28,20 +28,21 @@ body {
 }
 
 #currentslide {
-  font-size: 40pt;
-  font-weight: 400;
+  font-size: 3rem;
+  font-weight: 500;
   color: whitesmoke;
   padding-bottom: 0px;
   /* addded in to move to bottom */
   padding: 20px;
   text-align: center;
   position: fixed;
-  bottom: 10%;
+  bottom: 5%;
   left: 10%;
   right: 10%;
-  /* -webkit-text-stroke: 0.6px;
-  -webkit-text-stroke-color: blue; */
-  /* background-color: rgba(255, 255, 255, 0.15); */
+  /* -webkit-text-stroke: 1px;
+  -webkit-text-stroke-color: rgb(0, 0, 0); */
+  background-color: rgba(0, 0, 0, 0.5);
+  text-shadow: 5px 3px black;
 }
 
 #nextslide {
