@@ -20,7 +20,7 @@
  *
  * @format
  */
-let hideslide = false;
+var hideslide = false;
 
 window.OpenLP = {
   // Connect to the OpenLP Remote WebSocket to get pushed updates
@@ -38,7 +38,6 @@ window.OpenLP = {
         // set some global var
         OpenLP.myTwelve = data.twelve;
         const state = JSON.parse(reader.result.toString()).results;
-        const noshow = ["bibles", "presentations", "images", "media"];
 
         //added ninja code here
         if (state.blank || state.theme || state.display) {
@@ -101,10 +100,11 @@ window.OpenLP = {
       var tag = "";
       var tags = 0;
       var lastChange = 0;
-      //these are the types of items you DO NOT want to show up. Adjust to your liking
-      var dontwant = ["images", "presentations", "media"];
+      // These are the types of items you DO NOT want to show up. Adjust to your liking.
+      // Choices are: songs, bibles, presentations, images, media, custom
+      var dontwant = ["images", "presentations", "media", "custom"];
 
-      //This is where we find out what type of item it is.
+      //This is where we find out what type of item the current item is.
       //If data.name is in [dontwant array] set hideslide to true. Will be used in updateSlides to hide/show.
       if ($.inArray(data.name, dontwant) != -1) {
         hideslide = true;
