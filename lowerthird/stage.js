@@ -20,6 +20,7 @@
  *
  * @format
  */
+let hideslide = false;
 
 window.OpenLP = {
   // Connect to the OpenLP Remote WebSocket to get pushed updates
@@ -33,9 +34,11 @@ window.OpenLP = {
       const reader = new FileReader();
       reader.onload = () => {
         data = JSON.parse(reader.result.toString()).results;
+
         // set some global var
         OpenLP.myTwelve = data.twelve;
         const state = JSON.parse(reader.result.toString()).results;
+        const noshow = ["bibles", "presentations", "images", "media"];
 
         //added ninja code here
         if (state.blank || state.theme || state.display) {
@@ -98,6 +101,17 @@ window.OpenLP = {
       var tag = "";
       var tags = 0;
       var lastChange = 0;
+      //these are the types of items you DO NOT want to show up. Adjust to your liking
+      var dontwant = ["images", "presentations", "media"];
+
+      //This is where we find out what type of item it is.
+      //If data.name is in [dontwant array] set hideslide to true. Will be used in updateSlides to hide/show.
+      if ($.inArray(data.name, dontwant) != -1) {
+        hideslide = true;
+      } else {
+        hideslide = false;
+      }
+
       $.each(data.slides, function (idx, slide) {
         var prevtag = tag;
         tag = slide["tag"];
@@ -155,6 +169,11 @@ window.OpenLP = {
     var slide = OpenLP.currentSlides[OpenLP.currentSlide];
     var text = "";
 
+    //Checks hideslide to see if we want to show or hide it.
+    if (hideslide == true) {
+      $("body").hide();
+    }
+
     // use title if available
     if (slide["text"]) {
       text = slide["text"];
@@ -162,13 +181,13 @@ window.OpenLP = {
       text = slide["title"];
     }
 
-    if (
-      ["mp4", "png", "gif", "jpg", "jpeg", "wmv", "pptx", "pdf"].some((char) =>
-        text.endsWith(char)
-      )
-    ) {
-      $("body").hide();
-    }
+    // if (
+    //   ["mp4", "png", "gif", "jpg", "jpeg", "wmv", "pptx", "pdf"].some((char) =>
+    //     text.endsWith(char)
+    //   )
+    // ) {
+    //   $("body").hide();
+    // }
 
     //use thumbnail if available
 
@@ -221,6 +240,15 @@ window.OpenLP = {
     div.html(h + ":" + m);
   },
 };
+
+$.getJSON("/api/v2/controller/live-items", function (data, status) {
+  var noshow = ["images", "media", "presentations", "bibles"];
+
+  if ((data.name = noshow)) {
+    $("body").hide();
+  }
+});
+
 $.ajaxSetup({ cache: false });
 setInterval("OpenLP.updateClock();", 500);
 OpenLP.myWebSocket();
