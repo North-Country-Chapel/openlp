@@ -20,7 +20,7 @@
  *
  * @format
  */
-var hideslide = false;
+var hideSlide = false;
 
 window.OpenLP = {
   // Connect to the OpenLP Remote WebSocket to get pushed updates
@@ -34,7 +34,6 @@ window.OpenLP = {
       const reader = new FileReader();
       reader.onload = () => {
         data = JSON.parse(reader.result.toString()).results;
-
         // set some global var
         OpenLP.myTwelve = data.twelve;
         const state = JSON.parse(reader.result.toString()).results;
@@ -102,14 +101,14 @@ window.OpenLP = {
       var lastChange = 0;
       // These are the types of items you DO NOT want to show up. Adjust to your liking.
       // Choices are: songs, bibles, presentations, images, media, custom
-      var dontwant = ["images", "presentations", "media", "custom"];
+      var dontWant = ["images", "presentations", "media"];
 
       //This is where we find out what type of item the current item is.
-      //If data.name is in [dontwant array] set hideslide to true. Will be used in updateSlides to hide/show.
-      if ($.inArray(data.name, dontwant) != -1) {
-        hideslide = true;
+      //If data.name is in [dontWant array] set hideSlide to true. Will be used in updateSlides to hide/show.
+      if ($.inArray(data.name, dontWant) != -1) {
+        hideSlide = true;
       } else {
-        hideslide = false;
+        hideSlide = false;
       }
 
       $.each(data.slides, function (idx, slide) {
@@ -169,8 +168,8 @@ window.OpenLP = {
     var slide = OpenLP.currentSlides[OpenLP.currentSlide];
     var text = "";
 
-    //Checks hideslide to see if we want to show or hide it.
-    if (hideslide == true) {
+    // Hides everything if hideSlide is true
+    if (hideSlide == true) {
       $("body").hide();
     }
 
@@ -181,15 +180,14 @@ window.OpenLP = {
       text = slide["title"];
     }
 
-    // if (
-    //   ["mp4", "png", "gif", "jpg", "jpeg", "wmv", "pptx", "pdf"].some((char) =>
-    //     text.endsWith(char)
-    //   )
-    // ) {
-    //   $("body").hide();
-    // }
-
     //use thumbnail if available
+    // Don't comment this out if you want image thumbnails to show
+    // if (slide["img"]) {
+    //   text +=
+    //     "<br /><img src='" +
+    //     slide["img"].replace("//thumbnails//", "//thumbnails//") +
+    //     "'><br />";
+    // }
 
     // use notes if available
     if (slide["slide_notes"]) {
@@ -240,15 +238,6 @@ window.OpenLP = {
     div.html(h + ":" + m);
   },
 };
-
-$.getJSON("/api/v2/controller/live-items", function (data, status) {
-  var noshow = ["images", "media", "presentations", "bibles"];
-
-  if ((data.name = noshow)) {
-    $("body").hide();
-  }
-});
-
 $.ajaxSetup({ cache: false });
 setInterval("OpenLP.updateClock();", 500);
 OpenLP.myWebSocket();
