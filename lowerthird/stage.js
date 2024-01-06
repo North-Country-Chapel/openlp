@@ -41,9 +41,9 @@ window.OpenLP = {
         //added ninja code here
         if (state.blank || state.theme || state.display) {
           // Run code to blank your stage view here
-          $("body").hide();
+          $("body").fadeOut(500);
         } else {
-          $("body").show();
+          $("body").fadeIn(500);
         }
         // end ninja code
 
@@ -166,11 +166,11 @@ window.OpenLP = {
     $("#verseorder span").removeClass("currenttag");
     $("#tag" + OpenLP.currentTags[OpenLP.currentSlide]).addClass("currenttag");
     var slide = OpenLP.currentSlides[OpenLP.currentSlide];
-    var text = "";
+    var text = " ";
 
     // Hides everything if hideSlide is true
     if (hideSlide == true) {
-      $("body").hide();
+      $("body").fadeOut(500);
     }
 
     // use title if available
