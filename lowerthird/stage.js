@@ -41,6 +41,7 @@ window.OpenLP = {
         //added ninja code here
         if (state.blank || state.theme || state.display) {
           // Run code to blank your stage view here
+          // Instant blank: .hide() .show() instead of .fade
           $("body").fadeOut(500);
         } else {
           $("body").fadeIn(500);
@@ -85,6 +86,7 @@ window.OpenLP = {
           }
         }
       });
+
       OpenLP.updateSlide();
     });
   },
@@ -170,14 +172,19 @@ window.OpenLP = {
 
     // Hides everything if hideSlide is true
     if (hideSlide == true) {
-      $("body").fadeOut(500);
+      $("body").hide();
     }
 
-    // use title if available
-    if (slide["text"]) {
-      text = slide["text"];
+    // Do not show title if hideSlide is true
+    if (hideSlide == true) {
+      text = " ";
     } else {
-      text = slide["title"];
+      // use title if available
+      if (slide["text"]) {
+        text = slide["text"];
+      } else {
+        text = slide["title"];
+      }
     }
 
     //use thumbnail if available
@@ -197,6 +204,15 @@ window.OpenLP = {
     text = text.replace(/\n/g, "<br />");
     $("#currentslide").html(text);
     text = "";
+
+    // Use footer if available
+    if (slide["footer"]) {
+      text += "<br />" + slide["footer"];
+    }
+    text = text.replace(/\n/g, " | ");
+    $("#footer").html(text);
+    text = "";
+
     if (OpenLP.currentSlide < OpenLP.currentSlides.length - 1) {
       for (
         var idx = OpenLP.currentSlide + 1;
