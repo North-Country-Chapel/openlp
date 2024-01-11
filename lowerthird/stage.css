@@ -36,7 +36,7 @@ body {
   padding: 20px;
   text-align: center;
   position: fixed;
-  bottom: 5%;
+  bottom: 6%;
   left: 10%;
   right: 10%;
   /* -webkit-text-stroke: 1px;
@@ -66,6 +66,17 @@ body {
   font-size: 36pt;
   color: salmon;
   text-align: right;
+}
+
+#footer {
+  font-size: 1rem;
+  color: silver;
+  text-align: left;
+  padding: 20px;
+  position: fixed;
+  bottom: 1%;
+  left: 2%;
+  right: 10%;
 }
 
 #verseorder {
