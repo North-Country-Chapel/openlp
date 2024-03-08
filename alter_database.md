@@ -27,13 +27,13 @@ In OpenLP File/Export/Song. Select them all. Save to a folder of your choice.
 10. Bottom window should says `Execution finshed without errors.` `Result X rows returned in Y ms.` Note the number of rows. Look at the rows and make sure it's the rows you wanted to change.
 11. Delete the previous command in the _SQ1_ window and enter the following line into the _SQ1_ window: `UPDATE songs SET copyright = REPLACE(copyright, '©', '') WHERE copyright LIKE '©%';`
     It should return the same number of rows as the previous step.
-12. Now we are going to remove any leading or trailing spaces.
-13. elete the previous command in the _SQ1_ window and enter the following line into the _SQ1_ window: `SELECT TRIM(copyright)from songs;`
+    Now we are going to remove any leading or trailing spaces.
+12. Delete the previous command in the _SQ1_ window and enter the following line into the _SQ1_ window: `SELECT TRIM(copyright)from songs;`
 
 ## That wasn't so bad
 
-14. Switch over to _Browse Data_ tab and admire your cleaned copyright column.
-15. Click _Write Changes_ button in the menu bar.
-16. Close DB Browser. Discard the changes made to a new project file.
+13. Switch over to _Browse Data_ tab and admire your cleaned copyright column.
+14. Click _Write Changes_ button in the menu bar.
+15. Close DB Browser. Discard the changes made to a new project file.
 
 Open OpenLP and enjoy your non-duplicated copyright symbols.
