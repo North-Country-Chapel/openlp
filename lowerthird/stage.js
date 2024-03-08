@@ -209,7 +209,7 @@ window.OpenLP = {
     if (slide["footer"]) {
       text += "<br />" + slide["footer"];
     }
-    text = text.replace(/\n/g, " | ");
+    text = text.replace(/\n/g, "<br >");
     $("#footer").html(text);
     text = "";
 
