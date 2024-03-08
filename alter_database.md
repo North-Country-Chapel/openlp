@@ -1,6 +1,6 @@
 <!-- @format -->
 
-# To remove © from the db
+# To remove © from the songs db
 
 Our long-lived OpenLP database has lived through a wide variety of copyright symbol entry schemes. So sometimes two show on the display, sometimes one. This cleans the database without having to fix them individually in OpenLP.
 
@@ -8,7 +8,7 @@ Our long-lived OpenLP database has lived through a wide variety of copyright sym
 
 > **Make sure you have a backup.**
 
-In OpenLP File/Export/Song. Select them all. Save to a folder of your choice.
+In OpenLP _File/Export/Song_. Select them all. Save to a folder of your choice.
 
 ## Getting Ready
 
