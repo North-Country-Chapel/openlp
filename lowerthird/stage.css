@@ -41,8 +41,8 @@ body {
   right: 10%;
   /* -webkit-text-stroke: 1px;
   -webkit-text-stroke-color: rgb(0, 0, 0); */
-  background-color: rgba(0, 0, 0, 0.5);
-  text-shadow: 5px 3px black;
+  background-color: rgba(0, 0, 0, 0.25);
+  text-shadow: 4px 3px black;
 }
 
 #nextslide {
