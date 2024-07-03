@@ -23,6 +23,7 @@
 var hideSlide = false;
 
 window.OpenLP = {
+  reconnectInterval: 5000,
   // Connect to the OpenLP Remote WebSocket to get pushed updates
   myWebSocket: function (data, status) {
     const host = window.location.hostname;
@@ -62,6 +63,21 @@ window.OpenLP = {
         OpenLP.loadService();
       };
       reader.readAsText(event.data);
+    };
+
+    // ws.onopen = function (event) {
+    //   console.log("WebSocket connected");
+    //   $("#inside").hide();
+    // };
+    ws.onerror = function (event) {
+      console.log("WebSocket connection error.", event);
+      $("#inside").hide();
+    };
+
+    ws.onclose = function (event) {
+      console.log("WebSocket connection closed.");
+      $("#inside").hide();
+      setTimeout(OpenLP.myWebSocket, OpenLP.reconnectInterval);
     };
   },
 
@@ -165,6 +181,11 @@ window.OpenLP = {
     // Show the current slide on top. Any trailing slides for the same verse
     // are shown too underneath in grey.
     // Then leave a blank line between following verses
+    if (!OpenLP.currentSlides || OpenLP.currentSlides.length === 0) {
+      console.error("No slides available for update.");
+      $("#inside").hide();
+      return;
+    }
     $("#verseorder span").removeClass("currenttag");
     $("#tag" + OpenLP.currentTags[OpenLP.currentSlide]).addClass("currenttag");
     var slide = OpenLP.currentSlides[OpenLP.currentSlide];
