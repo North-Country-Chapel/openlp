@@ -42,9 +42,9 @@ window.OpenLP = {
         if (state.blank || state.theme || state.display) {
           // Run code to blank your stage view here
           // Instant blank: .hide() .show() instead of .fade
-          $("body").fadeOut(500);
+          $("#inside").fadeOut(500);
         } else {
-          $("body").fadeIn(500);
+          $("#inside").fadeIn(500);
         }
         // end ninja code
 
@@ -172,7 +172,7 @@ window.OpenLP = {
 
     // Hides everything if hideSlide is true
     if (hideSlide == true) {
-      $("body").hide();
+      $("#inside").hide();
     }
 
     // Do not show title if hideSlide is true
